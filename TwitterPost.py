@@ -21,11 +21,15 @@ Token = os.environ['T_Token']
 
 def random_line():
 
-    lines = open('quote.txt', encoding='UTF-8').read().splitlines()
+    
     selected_line = random.choice(lines)
 
     return selected_line
 
+def telmsg(fmsg):
+    updater = Updater(token=Token, use_context=True)
+    updater.bot.send_message(chat_id='890299126', text=fmsg)
+    
 
 def post_master():
     try:
@@ -35,26 +39,24 @@ def post_master():
         auth.set_access_token(access_token, access_token_secret)
         api = tweepy.API(auth)
         # get the random line
-        post_status = random_line()
-        # update the status
-        updater.bot.send_message(chat_id='890299126', text=post_status)
-        api.update_status(status='Hi This is 5th 5th and 20 20')
-        proc_stat = 'Message posted'
-
+        lines = open('quote.txt', encoding='UTF-8').read().splitlines()
+        post_status = random.choice(lines)
+        # update the status  
+        api.update_status(status=post_status)
+        lines.close()
     except Exception as errmsg:
-        updater.bot.send_message(chat_id='890299126', text=errmsg)
+        telmsg(str(errmsg))
     finally:
-        updater.bot.send_message(chat_id='890299126', text='done')
+        telmsg('Executed')
 
 
 def main():
-    updater = Updater(token=Token, use_context=True)
-    # X = post_master()
+
     while True:
         _currentTime = time.localtime()
-        c_time = time.strftime("%S", _currentTime)
-        if (c_time == '15:20:00') or (c_time == '16:20:00') or (c_time == '18:40:00'):
-            updater.bot.send_message(chat_id='890299126', text=c_time)
+        c_time = time.strftime("%H:%M:%S", _currentTime)
+        if (c_time == '16:42:00') or (c_time == '16:50:00') or (c_time == '18:40:00'):
+            post_master()
         time.sleep(1)
 
 
