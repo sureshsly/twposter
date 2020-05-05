@@ -30,7 +30,7 @@ def post_master():
         # get the random line
         post_status = random_line()
         # update the status
-        # api.update_status(status=post_status)
+        api.update_status(status=post_status)
         proc_stat = 'Msg posted'+ ' '+post_status
 
     except Exception as errmsg:
@@ -45,7 +45,7 @@ def main():
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%H:%M:%S", _currentTime)
-        if (c_time == '06:00:00') or (c_time == '12:20:00') or (c_time == '12:35:00'):
+        if (c_time == '06:00:00') or (c_time == '12:40:00') or (c_time == '12:35:00'):
             msg = post_master()
 
         time.sleep(1)
