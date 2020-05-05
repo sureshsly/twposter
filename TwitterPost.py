@@ -46,7 +46,7 @@ def main():
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%H:%M:%S", _currentTime)
-        if (c_time == '12:45:00') or (c_time == '11:45:00') or (c_time == '13:55:00'):
+        if (c_time == '00:30:00') or (c_time == '07:30:00') or (c_time == '12:30:00') or (c_time == '16:30:00'):
             post_master()
         time.sleep(1)
 
