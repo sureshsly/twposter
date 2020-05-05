@@ -49,7 +49,8 @@ def post_master():
 
 def main():
     updater = Updater(token=Token, use_context=True)
-    updater.bot.send_message(chat_id='890299126', text='Program started')
+    cur_time = time.localtime()
+    updater.bot.send_message(chat_id='890299126', text=str(cur_time))
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%S", _currentTime)
