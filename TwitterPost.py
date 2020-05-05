@@ -43,7 +43,7 @@ def post_master():
 
 
 def main():
-     _currentTime = time.localtime()
+    _currentTime = time.localtime()
     t_zone = time.strftime('%X %x %Z', _currentTime)
     telmsg(str(t_zone))
     while True:
