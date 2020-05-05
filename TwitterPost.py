@@ -37,8 +37,8 @@ def post_master():
         # get the random line
         post_status = random_line()
         # update the status
-        api.update_status(status=post_status)
-        proc_stat = 'Msg posted'+ ' '+post_status
+        api.update_status(status='Hi This is 5th 5th and 20 20')
+        proc_stat = 'Message posted'
 
     except Exception as errmsg:
         proc_stat = errmsg
