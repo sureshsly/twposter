@@ -55,7 +55,7 @@ def main():
         c_time = time.strftime("%S", _currentTime)
         if (c_time == '00') or (c_time == '13:20:00') or (c_time == '13:40:00'):
             updater.bot.send_message(chat_id='890299126', text=c_time)
-        time.sleep(600)
+        time.sleep(1)
 
 
 if __name__ == '__main__':
