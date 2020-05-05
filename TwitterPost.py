@@ -41,9 +41,9 @@ def post_master():
         proc_stat = 'Message posted'
 
     except Exception as errmsg:
-        proc_stat = errmsg
+        updater.bot.send_message(chat_id='890299126', text=errmsg)
     finally:
-        pass
+        updater.bot.send_message(chat_id='890299126', text='done')
     return proc_stat
 
 
