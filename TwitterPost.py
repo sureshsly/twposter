@@ -49,7 +49,7 @@ def post_master():
 
 def main():
     updater = Updater(token=Token, use_context=True)
-    X = post_master()
+    # X = post_master()
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%S", _currentTime)
