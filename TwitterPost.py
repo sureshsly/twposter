@@ -50,6 +50,7 @@ def post_master():
 def main():
     updater = Updater(token=Token, use_context=True)
     cur_time = time.localtime()
+    cur_time = time.strftime("%S", cur_time)
     updater.bot.send_message(chat_id='890299126', text=str(cur_time))
     while True:
         _currentTime = time.localtime()
