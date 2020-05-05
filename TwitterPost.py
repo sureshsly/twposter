@@ -1,5 +1,10 @@
 # importing the module
-
+from sys import version_info
+import requests
+import json
+import operator
+from telegram.ext import Updater, Filters, MessageHandler
+from telegram import ParseMode
 import tweepy
 import random
 import time
