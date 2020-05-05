@@ -1,1 +1,1 @@
-worker: python telbot.py
+worker: python lemtwpost.py
