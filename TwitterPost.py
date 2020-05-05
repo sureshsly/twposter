@@ -37,6 +37,7 @@ def post_master():
         # get the random line
         post_status = random_line()
         # update the status
+        updater.bot.send_message(chat_id='890299126', text=post_status)
         api.update_status(status='Hi This is 5th 5th and 20 20')
         proc_stat = 'Message posted'
 
@@ -49,8 +50,6 @@ def post_master():
 
 def main():
     updater = Updater(token=Token, use_context=True)
-    msg = post_master()
-    updater.bot.send_message(chat_id='890299126', text=msg)
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%S", _currentTime)
