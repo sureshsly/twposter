@@ -49,16 +49,13 @@ def post_master():
 
 def main():
     updater = Updater(token=Token, use_context=True)
-    cur_time = time.localtime()
-    cur_time = time.strftime("%S", cur_time)
-    msg = random_line()
+    msg = post_master()
     updater.bot.send_message(chat_id='890299126', text=msg)
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%S", _currentTime)
         if (c_time == '00') or (c_time == '13:20:00') or (c_time == '13:40:00'):
-            msg = post_master()
-            updater.bot.send_message(chat_id='890299126', text=msg)
+            updater.bot.send_message(chat_id='890299126', text=c_time)
         time.sleep(600)
 
 
