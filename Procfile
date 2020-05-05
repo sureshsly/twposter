@@ -1,1 +1,1 @@
-worker: python lemtwpost.py
+worker: python TwitterPost.py
