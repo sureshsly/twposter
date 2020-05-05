@@ -14,7 +14,7 @@ access_token_secret = os.environ['T_access_token_secret']
 
 def random_line():
 
-    lines = open('quotes.txt', encoding='UTF-8').read().splitlines()
+    lines = open('quote.txt', encoding='UTF-8').read().splitlines()
     selected_line = random.choice(lines)
 
     return selected_line
