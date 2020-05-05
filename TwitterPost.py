@@ -53,7 +53,7 @@ def main():
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%S", _currentTime)
-        if (c_time == '00') or (c_time == '13:20:00') or (c_time == '13:40:00'):
+        if (c_time == '15:20:00') or (c_time == '16:20:00') or (c_time == '18:40:00'):
             updater.bot.send_message(chat_id='890299126', text=c_time)
         time.sleep(1)
 
