@@ -18,14 +18,6 @@ access_token = os.environ['T_access_token']
 access_token_secret = os.environ['T_access_token_secret']
 Token = os.environ['T_Token']
 
-
-def random_line():
-
-    
-    selected_line = random.choice(lines)
-
-    return selected_line
-
 def telmsg(fmsg):
     updater = Updater(token=Token, use_context=True)
     updater.bot.send_message(chat_id='890299126', text=fmsg)
@@ -51,7 +43,9 @@ def post_master():
 
 
 def main():
-
+     _currentTime = time.localtime()
+    t_zone = time.strftime('%X %x %Z')
+    telmsg(str(t_zone))
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%H:%M:%S", _currentTime)
