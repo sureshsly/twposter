@@ -11,6 +11,8 @@ consumer_key = os.environ['T_consumer_key']
 consumer_secret = os.environ['T_consumer_secret']
 access_token = os.environ['T_access_token']
 access_token_secret = os.environ['T_access_token_secret']
+Token = os.environ['T_Token']
+
 
 def random_line():
 
@@ -41,13 +43,13 @@ def post_master():
 
 
 def main():
-
+    updater = Updater(token=Token, use_context=True)
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%S", _currentTime)
         if (c_time == '00') or (c_time == '13:20:00') or (c_time == '13:40:00'):
             msg = post_master()
-
+            updater.bot.send_message(chat_id='890299126', text=msg)
         time.sleep(600)
 
 
