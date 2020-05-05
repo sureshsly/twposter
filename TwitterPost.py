@@ -43,13 +43,11 @@ def post_master():
 
 
 def main():
-    _currentTime = time.localtime()
-    t_zone = time.strftime('%X %x %Z', _currentTime)
-    telmsg(str(t_zone))
+
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%H:%M:%S", _currentTime)
-        if (c_time == '16:42:00') or (c_time == '16:50:00') or (c_time == '18:40:00'):
+        if (c_time == '11:35:00') or (c_time == '11:45:00') or (c_time == '11:55:00'):
             post_master()
         time.sleep(1)
 
