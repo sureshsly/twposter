@@ -39,7 +39,7 @@ def post_master(i):
         i = parser.get('line_details', 'last')
         i = int(i)
         i=i+1
-        opn_f = open('Periyar.txt','r', encoding='UTF-8')
+        opn_f = open('quote.txt','r', encoding='UTF-8')
         sel_line = opn_f.read().splitlines()
         post_status = sel_line[i]
         opn_f.close()
