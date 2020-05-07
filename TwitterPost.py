@@ -45,7 +45,7 @@ def post_master(i):
         opn_f.close()
         telmsg(post_status)
         # update the status  
-        # api.update_status(status=post_status)
+        api.update_status(status=post_status)
         parser.set('line_details', 'last', str(i))
         configfile = open('simple.ini', 'w')
         parser.write(configfile)
