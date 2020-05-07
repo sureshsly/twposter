@@ -26,7 +26,7 @@ def telmsg(fmsg):
     updater.bot.send_message(chat_id=Chat_id, text=fmsg)
     
 
-def post_master(i):
+def post_master():
     try:
         # authentication of consumer key and secret
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -43,7 +43,6 @@ def post_master(i):
         sel_line = opn_f.read().splitlines()
         post_status = sel_line[i]
         opn_f.close()
-        telmsg(post_status)
         # update the status  
         api.update_status(status=post_status)
         parser.set('line_details', 'last', str(i))
@@ -58,9 +57,7 @@ def post_master(i):
 
 
 def main():
-    global i
-    i=1
-    post_master(i)
+    post_master()
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%H:%M:%S", _currentTime)
