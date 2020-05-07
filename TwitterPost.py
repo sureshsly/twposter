@@ -25,7 +25,7 @@ def telmsg(fmsg):
     updater.bot.send_message(chat_id=Chat_id, text=fmsg)
     
 
-def post_master():
+def post_master(i):
     try:
         # authentication of consumer key and secret
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -36,7 +36,7 @@ def post_master():
         lines = open('quote.txt', encoding='UTF-8').read().splitlines()
         post_status = lines[i]
         # update the status  
-        api.update_status(status=post_status)
+        # api.update_status(status=post_status)
         i=i+1
     except Exception as errmsg:
         telmsg(str(errmsg))
@@ -48,12 +48,12 @@ def post_master():
 def main():
     global i
     i=1
-    post_master()
+    post_master(i)
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%H:%M:%S", _currentTime)
         if (c_time == '00:30:00') or (c_time == '07:30:00') or (c_time == '12:30:00') or (c_time == '16:30:00'):
-            post_master()
+            post_master(i)
         time.sleep(1)
 
 
