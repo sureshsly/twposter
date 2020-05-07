@@ -35,6 +35,7 @@ def post_master(i):
         # get the random line
         lines = open('quote.txt', encoding='UTF-8').read().splitlines()
         post_status = lines[i]
+        telmsg(post_status)
         # update the status  
         # api.update_status(status=post_status)
         i=i+1
