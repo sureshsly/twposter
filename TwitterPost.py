@@ -9,6 +9,7 @@ import tweepy
 import random
 import time
 import os
+from configparser import ConfigParser
 
 
 #getting the Key from outside
@@ -33,12 +34,22 @@ def post_master(i):
         auth.set_access_token(access_token, access_token_secret)
         api = tweepy.API(auth)
         # get the random line
-        lines = open('quote.txt', encoding='UTF-8').read().splitlines()
-        post_status = lines[i]
+        parser = ConfigParser()
+        parser.read('simple.ini')
+        i = parser.get('line_details', 'last')
+        i = int(i)
+        i=i+1
+        opn_f = open('Periyar.txt','r', encoding='UTF-8')
+        sel_line = opn_f.read().splitlines()
+        post_status = sel_line[i]
+        opn_f.close()
         telmsg(post_status)
         # update the status  
         # api.update_status(status=post_status)
-        i=i+1
+        parser.set('line_details', 'last', str(i))
+        configfile = open('simple.ini', 'w')
+        parser.write(configfile)
+        configfile.close()
     except Exception as errmsg:
         telmsg(str(errmsg))
     finally:
