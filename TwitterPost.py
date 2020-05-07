@@ -17,10 +17,11 @@ consumer_secret = os.environ['T_consumer_secret']
 access_token = os.environ['T_access_token']
 access_token_secret = os.environ['T_access_token_secret']
 Token = os.environ['T_Token']
+Chat_id = os.environ['T_chatid']
 
 def telmsg(fmsg):
     updater = Updater(token=Token, use_context=True)
-    updater.bot.send_message(chat_id='890299126', text=fmsg)
+    updater.bot.send_message(chat_id=Chat_id, text=fmsg)
     
 
 def post_master():
@@ -32,17 +33,20 @@ def post_master():
         api = tweepy.API(auth)
         # get the random line
         lines = open('quote.txt', encoding='UTF-8').read().splitlines()
-        post_status = random.choice(lines)
+        post_status = lines[i]
         # update the status  
         api.update_status(status=post_status)
+        i=i+1
     except Exception as errmsg:
         telmsg(str(errmsg))
     finally:
-        telmsg('Executed')
+        messag = 'Quote number '+ str(i)+ ' is executed successfully!!'
+        telmsg(messag)
 
 
 def main():
-
+    i = 1
+    post_master()
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%H:%M:%S", _currentTime)
