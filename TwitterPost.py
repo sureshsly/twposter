@@ -10,6 +10,7 @@ import random
 import time
 import os
 
+
 #getting the Key from outside
 
 consumer_key = os.environ['T_consumer_key']
@@ -45,7 +46,8 @@ def post_master():
 
 
 def main():
-    i = 1
+    global i
+    i=1
     post_master()
     while True:
         _currentTime = time.localtime()
