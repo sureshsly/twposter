@@ -41,7 +41,7 @@ def post_master():
         i=i+1
         opn_f = open('quote.txt','r', encoding='UTF-8')
         sel_line = opn_f.read().splitlines()
-        post_status = sel_line[i]
+        post_status =random.choices(sel_line)
         opn_f.close()
         # update the status  
         api.update_status(status=post_status)
@@ -52,7 +52,7 @@ def post_master():
     except Exception as errmsg:
         telmsg(str(errmsg))
     finally:
-        messag = 'Quote number '+ str(i)+ ' is executed successfully!!'
+        messag = 'Quote is executed successfully!!'
         telmsg(messag)
 
 
