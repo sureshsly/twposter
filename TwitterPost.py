@@ -41,7 +41,7 @@ def post_master():
         i=i+1
         opn_f = open('quote.txt','r', encoding='UTF-8')
         sel_line = opn_f.read().splitlines()
-        post_status =random.choices(sel_line)
+        post_status =random.choice(sel_line)
         opn_f.close()
         # update the status  
         api.update_status(status=post_status)
