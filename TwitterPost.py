@@ -57,8 +57,6 @@ def post_master():
                 #I've tried add delay so replies are order in thread but somehow order is messed in bigger threads
                 delay = math.pow(2, index - 1) * .01 #exponential delay 0.1, 0.2, 0.4, 0.8, 1.6, 3.2
                 time.sleep(delay)
-        # update the status  
-        api.update_status(status=post_status)
         parser.set('line_details', 'last', str(i))
         configfile = open('simple.ini', 'w')
         parser.write(configfile)
@@ -74,8 +72,8 @@ def format_msg(msg):
     splited = msg.split(' ')
     length = 260 #max 280 and 20 buffer to add string like (1/2)
     str = ''
-    for i in splited:
-        striped = i.strip()
+    for index, string in enumerate(splited, start=1):
+        striped = string.strip()
         if len(striped) == 0:
             continue
         if(len(striped) + len(str) <= length ):
@@ -83,6 +81,8 @@ def format_msg(msg):
                 str = striped
             else:
                 str += ' ' + striped
+            if(len(str) > 0 and index == len(splited)):
+                message.append(str)    
         else:
             message.append(str)
             str = striped
