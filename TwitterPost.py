@@ -34,7 +34,7 @@ def post_master():
         auth.set_access_token(access_token, access_token_secret)
         api = tweepy.API(auth)
         # get the random line
-        opn_f = open('quote.txt','r', encoding='UTF-8')
+        opn_f = open('yarl.txt','r', encoding='UTF-8')
         sel_line = opn_f.read().splitlines()
         post_status =random.choice(sel_line)
         opn_f.close()
