@@ -81,7 +81,7 @@ def format_msg(msg):
     return message
 
 def main():
-    post_master()
+   
     while True:
         _currentTime = time.localtime()
         c_time = time.strftime("%H:%M:%S", _currentTime)
