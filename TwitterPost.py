@@ -8,7 +8,7 @@ from telegram import ParseMode
 import tweepy
 import random
 import time
-import os
+import os, math
 from configparser import ConfigParser
 
 
@@ -43,8 +43,20 @@ def post_master():
         sel_line = opn_f.read().splitlines()
         post_status =random.choice(sel_line)
         opn_f.close()
-        # update the status  
-        api.update_status(status=post_status)
+        messages = format_msg(post_status)
+        is_thread = (len(messages) > 1)
+        reply_id = 0
+        for index, msg in enumerate(messages, start=1):
+            if(is_thread):
+                msg += ' ('+str(index)+'/'+ str(len(messages)) + ')'
+            #print(msg)
+            status = api.update_status(status=msg, in_reply_to_status_id = reply_id)
+            if(is_thread and reply_id == 0 and hasattr(status, 'id')):
+                reply_id = status.id
+            if(is_thread and index != len(messages)):
+                #I've tried add delay so replies are order in thread but somehow order is messed in bigger threads
+                delay = math.pow(2, index - 1) * .01 #exponential delay 0.1, 0.2, 0.4, 0.8, 1.6, 3.2
+                time.sleep(delay)
         parser.set('line_details', 'last', str(i))
         configfile = open('simple.ini', 'w')
         parser.write(configfile)
@@ -54,7 +66,27 @@ def post_master():
     finally:
         messag = 'Quote is executed successfully!!'
         telmsg(messag)
-
+        
+def format_msg(msg):
+    message = []
+    splited = msg.split(' ')
+    length = 260 #max 280 and 20 buffer to add string like (1/2)
+    str = ''
+    for index, string in enumerate(splited, start=1):
+        striped = string.strip()
+        if len(striped) == 0:
+            continue
+        if(len(striped) + len(str) <= length ):
+            if str == '':
+                str = striped
+            else:
+                str += ' ' + striped
+            if(len(str) > 0 and index == len(splited)):
+                message.append(str)    
+        else:
+            message.append(str)
+            str = striped
+    return message
 
 def main():    
     while True:
@@ -67,9 +99,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
