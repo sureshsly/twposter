@@ -34,11 +34,6 @@ def post_master():
         auth.set_access_token(access_token, access_token_secret)
         api = tweepy.API(auth)
         # get the random line
-        parser = ConfigParser()
-        parser.read('simple.ini')
-        i = parser.get('line_details', 'last')
-        i = int(i)
-        i=i+1
         opn_f = open('quote.txt','r', encoding='UTF-8')
         sel_line = opn_f.read().splitlines()
         post_status =random.choice(sel_line)
@@ -57,10 +52,7 @@ def post_master():
                 #I've tried add delay so replies are order in thread but somehow order is messed in bigger threads
                 delay = math.pow(2, index - 1) * .01 #exponential delay 0.1, 0.2, 0.4, 0.8, 1.6, 3.2
                 time.sleep(delay)
-        parser.set('line_details', 'last', str(i))
-        configfile = open('simple.ini', 'w')
-        parser.write(configfile)
-        configfile.close()
+
     except Exception as errmsg:
         telmsg(str(errmsg))
     finally:
