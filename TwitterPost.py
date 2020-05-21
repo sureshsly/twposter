@@ -9,7 +9,7 @@ import tweepy
 import random
 import time
 import os, math
-from configparser import ConfigParser
+
 
 
 #getting the Key from outside
