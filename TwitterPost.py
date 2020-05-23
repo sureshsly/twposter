@@ -68,16 +68,14 @@ def format_msg(msg):
         striped = string.strip()
         if len(striped) == 0:
             continue
-        if(len(striped) + len(str) <= length ):
-            if str == '':
-                str = striped
-            else:
-                str += ' ' + striped
-            if(len(str) > 0 and index == len(splited)):
-                message.append(str)    
+        length_after_append = len(striped) + len(str)
+        if(length_after_append <= length):
+            str = (str + ' ' + striped).strip()
         else:
-            message.append(str)
+            message.append(str) 
             str = striped
+        if(index == len(splited)):
+            message.append(str) 
     return message
 
 def main():
